@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">天气</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="search_hint">请输入地名</string>
+
+    <string name="forecast_text">预报</string>
+    <string name="detail_text">详情</string>
+    <string name="wind_speed">风向</string>
+    <string name="wind_power">风力</string>
+    <string name="sunrise_and_sunset_time">日出日落时间</string>
+    <string name="suggestion">适宜</string>
+
+    <string name="not_connect_network">请检查网络连接并重试</string>
+    <string name="location_is_off">请检查定位服务并重试</string>
+
+    <string name="edit_location_text">编辑位置</string>
+    <string name="current_location_text">当前位置</string>
+
+    <string name="error_save">保存搜索地址出错</string>
+    <string name="error_load">加载搜索地址出错</string>
+</resources>
