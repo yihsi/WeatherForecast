@@ -120,9 +120,9 @@ public class WeatherActivity extends AppCompatActivity {
                 }
                 else {
                     // Replace current fragment to show current location's temperature
-                    Fragment fragment = new WeatherFragment();
+                    mFragment = new WeatherFragment();
                     mManager.beginTransaction().replace(R.id.fragmentContainer,
-                            fragment).commit();
+                            mFragment).commit();
 
                     mDrawer.closeDrawer(GravityCompat.START);
                 }
@@ -147,9 +147,9 @@ public class WeatherActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     String location = mSearchedLocations.get(position);
-                    Fragment fragment = WeatherFragment.newInstance(location);
+                    mFragment = WeatherFragment.newInstance(location);
                     mManager.beginTransaction().replace(R.id.fragmentContainer,
-                            fragment).commit();
+                            mFragment).commit();
 
                     mDrawer.closeDrawer(GravityCompat.START);
                 }
@@ -169,12 +169,12 @@ public class WeatherActivity extends AppCompatActivity {
 
                 getSupportActionBar().show();
 
-                Fragment fragment = mManager.findFragmentById(R.id.fragmentContainer);
+                mFragment = mManager.findFragmentById(R.id.fragmentContainer);
 
-                if (fragment == null) {
-                    fragment = new WeatherFragment();
+                if (mFragment == null) {
+                    mFragment = new WeatherFragment();
 
-                    mManager.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
+                    mManager.beginTransaction().add(R.id.fragmentContainer, mFragment).commit();
                 }
 
                 return;

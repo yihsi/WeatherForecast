@@ -61,7 +61,7 @@ public class SearchedLocationsLab {
         for (String location : locations) {
             builder.append(location + "\n");
         }
-        
+
         //Write the file to disk
         Writer writer = null;
         try {
