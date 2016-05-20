@@ -3,7 +3,6 @@ package com.yihsi.weatherforecast;
 import android.Manifest;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -14,7 +13,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -186,10 +184,6 @@ public class WeatherFragment extends Fragment {
         boolean isNight = (calendar.get(Calendar.HOUR_OF_DAY) >= 18) ||
                 (calendar.get(Calendar.HOUR_OF_DAY) < 8);
 
-        // To store current daytime temperature, because after 18 o'clock, weather data
-        // returned has no current daytime temperature
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
         if (isNight) {
             mCurrentWeather.setText(mWeatherConditions[Integer.parseInt(
                     weather.getNightWeatherPhenomenon(0))]);
@@ -203,11 +197,13 @@ public class WeatherFragment extends Fragment {
             mCurrentTemperature.setText(weather.getDayTemperature(0) + "°");
             mCurrentWeatherImage.setImageResource(mDayWeatherIconsArray[
                     Integer.parseInt(weather.getDayWeatherPhenomenon(0))]);
-
-            preferences.edit().putString(mAreaName,
-                    weather.getDayTemperature(0) + "°").commit();
         }
-        mDayTemperature.setText("白天: " + preferences.getString(mAreaName, null));
+        if (weather.getDayTemperature(0).equals("")) {
+            mDayTemperature.setText("白天: " + null);
+        }
+        else {
+            mDayTemperature.setText("白天: " + weather.getDayTemperature(0) + "°");
+        }
         mNightTemperature.setText("    夜晚: " + weather.getNightTemperature(0) + "°");
 
         int field = calendar.get(Calendar.DAY_OF_WEEK);
