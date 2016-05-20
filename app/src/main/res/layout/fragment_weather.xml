@@ -34,12 +34,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:layout_weight="1"
                         android:textSize="28sp"/>
                     <ImageView
                         android:id="@+id/current_weather_icon"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:layout_marginLeft="156dp"
+                        android:layout_marginRight="14dp"
                         android:layout_gravity="right"/>
                 </LinearLayout>
                 <LinearLayout

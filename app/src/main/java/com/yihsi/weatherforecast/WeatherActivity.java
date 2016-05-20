@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -57,6 +56,7 @@ public class WeatherActivity extends AppCompatActivity {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawer.addDrawerListener(toggle);
+        // Synchronize the state of the drawer indicator/affordance with the linked DrawerLayout
         toggle.syncState();
 
         mManager = getFragmentManager();
@@ -66,11 +66,6 @@ public class WeatherActivity extends AppCompatActivity {
         // If permission location not granted
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                getWindow().setStatusBarColor(ContextCompat.getColor(this,
-                        R.color.colorPrimaryLight));
-            }
-
             getSupportActionBar().hide();
 
             // Use a dialog Request permission
@@ -162,11 +157,6 @@ public class WeatherActivity extends AppCompatActivity {
                                            @NonNull int[] grantResults) {
         switch (requestCode) {
             case PERMISSION_REQUEST_LOCATION:
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    getWindow().setStatusBarColor(ContextCompat.getColor(this,
-                            R.color.colorPrimaryDark));
-                }
-
                 getSupportActionBar().show();
 
                 mFragment = mManager.findFragmentById(R.id.fragmentContainer);
