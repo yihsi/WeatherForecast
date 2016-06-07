@@ -68,7 +68,7 @@ public class WeatherActivity extends AppCompatActivity {
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             getSupportActionBar().hide();
 
-            // Use a dialog Request permission
+            // Use a dialog to request permission
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     PERMISSION_REQUEST_LOCATION);

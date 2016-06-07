@@ -337,16 +337,18 @@ public class WeatherFragment extends Fragment {
 
                     double latitude = mLastLocation.getLatitude();
                     double longitude = mLastLocation.getLongitude();
-                    Geocoder geocoder = new Geocoder(getActivity(), Locale.CHINESE);
+                    // Locale.CHINESE doesn't work
+                    Geocoder geocoder = new Geocoder(getActivity(), Locale.SIMPLIFIED_CHINESE);
                     StringBuilder builder = new StringBuilder();
                     try {
                         List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
                         int maxLines = addresses.get(0).getMaxAddressLineIndex();
+
                         for (int i = 0; i < maxLines; i++) {
                             String address = addresses.get(0).getAddressLine(i);
                             builder.append(address);
                         }
-
+                        Log.i("builder", builder.toString());
                         if (builder.toString().contains("神农架林区")) {
                             name = "神农架";
                         } else {
